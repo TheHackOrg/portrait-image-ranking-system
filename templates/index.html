@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>portrait image ranking system</title>
+  <!-- CSS -->
+  <style type="text/css">
+    #top-image-list {
+      float: left;
+      margin-top: -9%;
+    }
+    #top-image-list-title {
+      padding-left: 40px;
+      font-size: larger;
+      font-weight: bolder;
+    }
+    ul {
+      list-style-type: none;
+    }
+    li img {
+      width: 70px;
+      height: 70px;
+    }
+    li div {
+      float: right;
+      margin-top: 18px;
+      margin-left: 10px;
+    }
+    #vistor_and_pk_count {
+      padding-left: 40px;
+      padding-top: 10px;
+    }
+    .image_container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10%;
+    }
+    #first_image_content, #second_image_content {
+      height: 240px;
+      width: 194px;
+    }
+    #first_image_love_button, #second_image_love_button {
+      height: 100px;
+      width: 100px;
+      padding-left: 40px;
+    }
+    #pk-image {
+      height: 150px;
+      width: 150px;
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 积分排名 ranking 前 10 的图片信息列表 -->
+  <div id="top-image-list">
+    <span id="top-image-list-title">Top 10 Of Ranking Score : </span>
+    <ul>
+      <li>
+        <span>1.</span>
+        <img id="top-1-img" alt="Top Image 1">
+        <div>
+          ID : <span id="top-1-img-name"></span><br>
+          Ranking Score : <span id="top-1-img-ranking"></span>
+        </div>
+      </li>
+      <li>
+        <span>2.</span>
+        <img id="top-2-img" alt="Top Image 2">
+        <div>
+          ID : <span id="top-2-img-name"></span><br>
+          Ranking Score : <span id="top-2-img-ranking"></span>
+        </div>
+      </li>
+      <li>
+        <span>3.</span>
+        <img id="top-3-img" alt="Top Image 3">
+        <div>
+          ID : <span id="top-3-img-name"></span><br>
+          Ranking Score : <span id="top-3-img-ranking"></span>
+        </div>
+      </li>
+      <li>
+        <span>4.</span>
+        <img id="top-4-img" alt="Top Image 4">
+        <div>
+          ID : <span id="top-4-img-name"></span><br>
+          Ranking Score : <span id="top-4-img-ranking"></span>
+        </div>
+      </li>
+      <li>
+        <span>5.</span>
+        <img id="top-5-img" alt="Top Image 5">
+        <div>
+          ID : <span id="top-5-img-name"></span><br>
+          Ranking Score : <span id="top-5-img-ranking"></span>
+        </div>
+      </li>
+      <li>
+        <span>6.</span>
+        <img id="top-6-img" alt="Top Image 6">
+        <div>
+          ID : <span id="top-6-img-name"></span><br>
+          Ranking Score : <span id="top-6-img-ranking"></span>
+        </div>
+      </li>
+      <li>
+        <span>7.</span>
+        <img id="top-7-img" alt="Top Image 7">
+        <div>
+          ID : <span id="top-7-img-name"></span><br>
+          Ranking Score : <span id="top-7-img-ranking"></span>
+        </div>
+      </li>
+      <li>
+        <span>8.</span>
+        <img id="top-8-img" alt="Top Image 8">
+        <div>
+          ID : <span id="top-8-img-name"></span><br>
+          Ranking Score : <span id="top-8-img-ranking"></span>
+        </div>
+      </li>
+      <li>
+        <span>9.</span>
+        <img id="top-9-img" alt="Top Image 9">
+        <div>
+          ID : <span id="top-9-img-name"></span><br>
+          Ranking Score : <span id="top-9-img-ranking"></span>
+        </div>
+      </li>
+      <li>
+        <span>10.</span>
+        <img id="top-10-img" alt="Top Image 10">
+        <div>
+          ID : <span id="top-10-img-name"></span><br>
+          Ranking Score : <span id="top-10-img-ranking"></span>
+        </div>
+      </li>
+    </ul>
+    <div id="vistor_and_pk_count">
+      <span>Vistor Count : <span>[ <span id="vistor_count"></span> ]</span></span>
+      <span>, PK Count : <span>[ <span id="pk_count"></span> ]</span></span><br>
+    </div>
+  </div>
+  <!-- 选手信息 -->
+  <div class="image_container">
+    <!-- 第一个选手信息 -->
+    <div class="first_image">
+      <div>
+        <img id="first_image_content"></img>
+        <p>ID : <span id="first_image_name"></span></p>
+        <p>Win Expect : <strong><span id="first_image_win_E"></span></strong></p>
+        <p>Ranking Score : <strong><span id="first_image_ranking"></span></strong></p>
+      </div>
+      <!-- 小心心按钮 -->
+      <div>
+        <img id="first_image_love_button" src="{{ url_for('static', filename='img/love.png') }}" alt="first_image_love_button_alt">
+      </div>
+    </div>
+    <!-- PK 图标 -->
+    <div>
+        <img id="pk-image" src="{{ url_for('static', filename='img/vs.png') }}" alt="VS Image">
+    </div>
+    <!-- 第二个选手信息 -->
+    <div class="second_image">
+      <div>
+        <img id="second_image_content"></img>
+        <p>ID : <span id="second_image_name"></span></p>
+        <p>Win Expect : <strong><span id="second_image_win_E"></span></strong></p>
+        <p>Ranking Score : <strong><span id="second_image_ranking"></span></strong></p>
+      </div>
+      <!-- 小心心按钮 -->
+      <div>
+        <img id="second_image_love_button" src="{{ url_for('static', filename='img/love.png') }}" alt="second_image_love_button_alt">
+      </div>
+    </div>
+  </div>
+
+  <!-- 加载 jquery 文件 -->
+  <script src="{{ url_for('static', filename='js/jquery-3.7.1.min.js') }}"></script>
+
+  <!-- JavaScript -->
+  <script>
+    /**
+     * 注: 在jQuery中, $(document).ready(function () {})是一个函数, 它会在页面上的所有元素都加载完毕后执行
+     * 
+     */
+    $(document).ready(function () {
+      // 发送 AJAX 请求让服务器端获取访客的 ip 地址
+      $.ajax({
+        url: '/api/get_vistor_ip',
+        type: 'get',
+        dataType: 'json',
+        success: function (response) {
+          console.log('your ip address is :', response.vistor_ip_address)
+        }
+      })
+
+      // 发送 AJAX 请求获取两条图片信息
+      $.ajax({
+        url: '/api/get_two_imgs', // 请求 API
+        type: 'get', // 请求类型
+        dataType: 'json', // 要求后端响应的数据必须是 JSON 格式
+        success: function (response) {
+          // 解析响应数据
+          var first_img_dict = response.first_image
+          var second_img_dict = response.second_image
+          // 将数据渲染到页面
+          $('#first_image_name').html(first_img_dict['name'])
+          $('#second_image_name').html(second_img_dict['name'])
+          $('#first_image_ranking').html(first_img_dict['ranking'])
+          $('#second_image_ranking').html(second_img_dict['ranking'])
+          $('#first_image_win_E').html(first_img_dict['winE'])
+          $('#second_image_win_E').html(second_img_dict['winE'])
+          $('#first_image_content').attr('src', 'data:image/jpeg;base64,' + first_img_dict['content'])
+          $('#second_image_content').attr('src', 'data:image/jpeg;base64,' + second_img_dict['content'])
+        }
+      });
+
+      // 获取积分排名 ranking 前 10 的照片信息
+      $.ajax({
+        url: '/api/get_top_10_ranking_imgs',
+        type: 'get',
+        dataType: 'json',
+        success: function(response) {
+          // 通过遍历响应数据, 将数据渲染到页面
+          num = 1
+          $.each(response, function(index, img_dict) {
+            $('#top-' + num + '-img-name').html(img_dict['name'])
+            $('#top-' + num + '-img-ranking').html(img_dict['ranking'])
+            $('#top-' + num + '-img').attr('src', 'data:image/jpeg;base64,' + img_dict['content'])
+            num = num + 1
+          })
+        }
+      })
+
+      // 获取网页访客总数及 PK 次数总数
+      $.ajax({
+        url: '/api/get_vistor_and_pk_count',
+        type: 'get',
+        dataType: 'json',
+        success: function(response) {
+          $('#vistor_count').html(response.vistor_count)
+          $('#pk_count').html(response.pk_count)
+        },
+        error: function(response) {
+          console.log('Error : failed to get count of vistor and PK')
+        }
+      })
+    });
+
+    /**
+     * 处理访客点击小心心按钮的事件
+     * 注: 在jQuery中, $('').click(function () {})是一个选择器和事件处理函数的结合
+     */
+    $('#first_image_love_button, #second_image_love_button').click(function () {
+      // 获取 PK 后双方的输赢情况
+      var image_alt = $(this).attr('alt')
+      if (image_alt == 'first_image_love_button_alt') {
+        var first_image_W = 1
+        var second_image_W = 0
+      }
+      if (image_alt == 'second_image_love_button_alt') {
+        var first_image_W = 0
+        var second_image_W = 1
+      }
+      // 获取双方 PK 前的获胜期望值 winE 及积分排名 ranking,
+      // 后端利用 Rn = Ro + K( W − E ) 来更新双方各自的积分排名
+      var first_image_name = $('#first_image_name').text()
+      var second_image_name = $('#second_image_name').text()
+      var first_image_win_E = $('#first_image_win_E').text()
+      var second_image_win_E = $('#second_image_win_E').text()
+      var first_image_ranking = $('#first_image_ranking').text()
+      var second_image_ranking = $('#second_image_ranking').text()
+      // 封装请求数据
+      first_image = {'name' : first_image_name, 'winE' : first_image_win_E, 'ranking' : first_image_ranking, 'W' : first_image_W}
+      second_image = {'name' : second_image_name, 'winE' : second_image_win_E, 'ranking' : second_image_ranking, 'W' : second_image_W}
+      var image_datas = {
+        'first_image' : first_image,
+        'second_image' : second_image
+      }
+      // 将请求数据序列化为 JSON 字符串
+      var image_json_datas = JSON.stringify(image_datas)
+
+      // 向后端发送 PK 结果数据
+      $.ajax({
+        type: 'POST',
+        url: '/api/pk_result',
+        data: image_json_datas,
+        contentType: 'application/json; charset=utf-8', // 说明请求携带的数据为 JSON 格式
+        dataType: 'json', // 要求后端响应的数据必须是 JSON 格式
+        success: function(response) {
+          // 若左边的选手获胜, 也即左边那张图片(first_image)获胜
+          if (first_image_W == 1) {
+            // 获取 PK 后的选手信息
+            first_img_dict = response.first_image
+            new_second_img_dict = response.new_second_image
+            // 更新页面中获胜选手的信息
+            $('#first_image_ranking').html(first_img_dict['ranking'])
+            $('#first_image_win_E').html(first_img_dict['winE'])
+            // 更新页面中失败选手的信息
+            $('#second_image_name').html(new_second_img_dict['name'])
+            $('#second_image_ranking').html(new_second_img_dict['ranking'])
+            $('#second_image_win_E').html(new_second_img_dict['winE'])
+            $('#second_image_content').attr('src', 'data:image/jpeg;base64,' + new_second_img_dict['content'])
+          }
+          // 同理: 若右边的选手获胜, 也即右边那张图片(second_image)获胜
+          if (second_image_W == 1) {
+            // 获取 PK 后的选手信息
+            new_first_img_dict = response.new_first_image
+            second_img_dict = response.second_image
+            // 更新页面中获胜选手的信息
+            $('#second_image_ranking').html(second_img_dict['ranking'])
+            $('#second_image_win_E').html(second_img_dict['winE'])
+            // 更新页面中失败选手的信息
+            $('#first_image_name').html(new_first_img_dict['name'])
+            $('#first_image_ranking').html(new_first_img_dict['ranking'])
+            $('#first_image_win_E').html(new_first_img_dict['winE'])
+            $('#first_image_content').attr('src', 'data:image/jpeg;base64,' + new_first_img_dict['content'])
+          }
+        },
+        error: function(error) {
+          console.error('Error in AJAX request: ', error)
+        },
+      })
+
+      // 更新页面中积分排名 ranking 前 10 的照片信息
+      $.ajax({
+        url: '/api/get_top_10_ranking_imgs',
+        type: 'get',
+        dataType: 'json',
+        success: function(response) {
+          num = 1
+          $.each(response, function(index, img_dict) {
+            $('#top-' + num + '-img-name').html(img_dict['name'])
+            $('#top-' + num + '-img-ranking').html(img_dict['ranking'])
+            $('#top-' + num + '-img').attr('src', 'data:image/jpeg;base64,' + img_dict['content'])
+            num = num + 1
+          })
+        }
+      })
+
+      // 当访客在页面点击 PK 按钮(小心心)时, 更新访客 ip 对应的 pk_count, 即 pk_count++
+      $.ajax({
+        url: '/api/update_vistor_pk_count',
+        type: 'post',
+        success: function(response) {
+          console.log(response)
+        },
+        error: function(error) {
+          console.log('Error : failed to update pk_count')
+        },
+      })
+
+      // 更新页面中的访客总数及 PK 次数总数
+      $.ajax({
+        url: '/api/get_vistor_and_pk_count',
+        type: 'get',
+        dataType: 'json',
+        success: function(response) {
+          $('#vistor_count').html(response.vistor_count)
+          $('#pk_count').html(response.pk_count)
+        },
+        error: function(response) {
+          console.log('Error : failed to get count of vistor and PK')
+        }
+      })
+    });
+  </script>
+</body>
+</html>
